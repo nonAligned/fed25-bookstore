@@ -1,0 +1,20 @@
+<div class="mt-5 mb-5">
+    <div class="form-inline">
+        <div class="form-check">
+            <input id="discount" [(ngModel)]="discount"
+            class="form-check-input ml-5" type="checkbox"
+            name="discount"
+            (change)="updateParams()">
+
+            <label for="discount" class="form-check-label">Discount</label>
+        </div>
+        <div class="form-check">
+            <input id="bestseller" [(ngModel)]="bestseller"
+            class="form-check-input ml-5" type="checkbox"
+            name="bestseller"
+            (change)="updateParams()">
+
+            <label for="bestseller" class="form-check-label">Bestseller</label>
+        </div>
+    </div>
+</div>

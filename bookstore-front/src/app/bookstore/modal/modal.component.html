@@ -1,0 +1,80 @@
+<div class="p-4">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Name</th>
+                <th>Price</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let book of addedBooks; let i = index">
+                <td>{{i+1}}</td>
+                <td>{{book?.name}}</td>
+                <td>{{book?.price | currency: 'USD'}}</td>
+                <td><button type="button" class="btn btn-danger" (click)="removeItem(book?._id)">X</button></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<hr>
+<div class="p-4">
+    <p class="price">Total: <strong>{{totalCost | currency: 'USD'}}</strong></p>
+    <form novalidate #orderForm="ngForm" (ngSubmit)="onSubmit()">
+        <div class="form-group row">
+            <label for="address"
+            class="col-3 col-form-label">Address</label>
+            <div class="col-9">
+                <input id="address" placeholder="Street name and number"
+                class="form-control" type="text" #address="ngModel"
+                name="address" [(ngModel)]="order.address" required>
+                <div class="row">
+                    <div class="col-12">
+                        <small class="text-danger" *ngIf="address.touched && address.errors">
+                            Address is required
+                        </small>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="appartment"
+            class="col-3 col-form-label">Appartment</label>
+            <div class="col-9">
+                <input id="appartment" placeholder="Floor and flat number"
+                class="form-control" type="text" #appartment="ngModel"
+                name="appartment" [(ngModel)]="order.appartment" required>
+                <div class="row">
+                    <div class="col-12">
+                        <small class="text-danger" *ngIf="appartment.touched && appartment.errors">
+                            Appartment is required
+                        </small>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="telephone"
+            class="col-3 col-form-label">Telephone</label>
+            <div class="col-9">
+                <input id="telephone" placeholder="Telephone"
+                class="form-control" type="number" #telephone="ngModel"
+                name="telephone" [(ngModel)]="order.telephone" required>
+                <div class="row">
+                    <div class="col-12">
+                        <small class="text-danger" *ngIf="telephone.touched && telephone.errors">
+                            Telephone is required
+                        </small>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12 text-center">
+                <button type="submit" [disabled]="orderForm.form.invalid"
+                class="btn btn-primary px-4">Order</button>
+            </div>
+        </div>
+    </form>
+</div>
